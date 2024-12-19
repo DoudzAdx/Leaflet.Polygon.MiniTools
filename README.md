@@ -13,11 +13,11 @@ You can also directly use the script tag.
 
 Stable (V1.0)
 ```
-<script src="https://cdn.jsdelivr.net/gh/doudz/Leaflet.PolygonMinitools@v1.0.0/Poligon.Minitools.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/DoudzAdx/Leaflet.Polygon.MiniTools@1.0.0/src/Polygon.Minitools.js"></script>
 ```
 Development (Main branch)
 ```
-<script src="https://cdn.jsdelivr.net/gh/doudz/Leaflet.PolygonMinitools/Poligon.Minitools.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/DoudzAdx/Leaflet.Polygon.MiniTools/src/Polygon.Minitools.js"></script>
 ```
 # Demos
 Demo on JSFiddle: [Leaflet.PolygonMinitools Demo](https://jsfiddle.net/Doudz/89sjqtzo/show). The same exemple is also included in `examples/exemple.html`.
@@ -25,11 +25,11 @@ Demo on JSFiddle: [Leaflet.PolygonMinitools Demo](https://jsfiddle.net/Doudz/89s
 The `drawformultipolygon` function in the example relies on [Leaflet.draw 1.0.4](https://github.com/Leaflet/Leaflet.draw/tree/v1.0.4)
 It allows you to solve a complete use case on the management of multipolygons with this lightweight... and old library.
 
-![Demo screen shot](https://storage.gra.cloud.ovh.net/v1/AUTH_0f20d409cb2a4c9786c769e2edec0e06/padnumerique/uploads/884e6e17-eb7b-49cc-ba7e-99ace8751eec.png)
+![Demo screen shot](demo.png)
 
 
 # API
-[See the reference](https://github.com/doudz/Leaflet.PolygonMinitools/blob/master/man/Polygon.Minitools.man.md).
+[See the reference](https://github.com/DoudzAdx/Leaflet.PolygonMinitools/blob/main/man/Polygon.Minitools.man.md).
 
 
 # Acknowledgements
