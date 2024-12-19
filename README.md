@@ -19,8 +19,8 @@ Development (Main branch)
 ```
 <script src="https://cdn.jsdelivr.net/gh/DoudzAdx/Leaflet.Polygon.MiniTools/src/Polygon.Minitools.js"></script>
 ```
-# Demos
-Demo on JSFiddle: [Leaflet.PolygonMinitools Demo](https://jsfiddle.net/Doudz/89sjqtzo/show). The same exemple is also included in `examples/exemple.html`.
+# Demo
+Demo on JSFiddle: [Leaflet.PolygonMinitools Demo](https://jsfiddle.net/Doudz/89sjqtzo). The same exemple is also included in `examples/exemple.html`.
 
 The `drawformultipolygon` function in the example relies on [Leaflet.draw 1.0.4](https://github.com/Leaflet/Leaflet.draw/tree/v1.0.4)
 It allows you to solve a complete use case on the management of multipolygons with this lightweight... and old library.
