@@ -29,7 +29,7 @@ It allows you to solve a complete use case on the management of multipolygons wi
 
 
 # API
-[See the reference](https://github.com/DoudzAdx/Leaflet.PolygonMinitools/blob/main/man/Polygon.Minitools.man.md).
+[See the reference](https://github.com/DoudzAdx/Leaflet.Polygon.Minitools/blob/main/man/Polygon.Minitools.man.md).
 
 
 # Acknowledgements
