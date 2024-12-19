@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Demo Leaflet Polygon.MiniTools - create and edit a single valid Multipolygon with holes</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+	<script type="text/javascript" src="file:///C:/Users/User/Downloads/Polygon.MiniTools.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+    <style type="text/css">
+    .textgeom {
+	  width: 100%;
+	  min-height: 80px;
+	}
+	#mapid {
+	  width: 100%;
+	  min-height: 450px;
+	  height: calc(100vh - 110px);
+	}
+    </style>
+</head>
+<body>
+<div id="mapid"></div>
+<textarea id="geometry_form" class="textgeom">
+{"type":"MultiPolygon","coordinates":[[[[-0.998554,47.502417],[-1.010957,47.500793],[-0.99967,47.498648],[-0.997009,47.499141],[-0.998554,47.502417]],[[-1.0004,47.499489],[-1.006193,47.50059],[-1.000056,47.501489],[-1.0004,47.499489]]],[[[-1.003575,47.505577],[-1.021256,47.499895],[-0.993791,47.496009],[-0.989799,47.502881],[-1.003575,47.505577]],[[-0.997009,47.503809],[-1.015677,47.500619],[-0.995207,47.49743],[-0.997009,47.503809]],[[-1.004004,47.504794],[-1.006408,47.503258],[-1.000485,47.503722],[-1.004004,47.504794]]]]}
+</textarea>
+<!--
+{"type":"MultiPolygon","coordinates":[[[[-1.554536,47.257558],[-1.562091,47.268279],[-1.569131,47.267696],[-1.575999,47.267696],[-1.587847,47.265482],[-1.596089,47.2642],[-1.604159,47.263734],[-1.611542,47.261637],[-1.620471,47.259422],[-1.622016,47.25511],[-1.620814,47.251147],[-1.621501,47.246718],[-1.622532,47.241705],[-1.625279,47.236342],[-1.625451,47.23366],[-1.622016,47.229112],[-1.621158,47.227013],[-1.621845,47.221766],[-1.623734,47.218383],[-1.625449,47.214192],[-1.626651,47.210342],[-1.625621,47.207193],[-1.622015,47.203576],[-1.619096,47.200309],[-1.615147,47.198093],[-1.613602,47.194475],[-1.613613,47.183875],[-1.613012,47.182358],[-1.610952,47.180986],[-1.607046,47.179937],[-1.604599,47.179324],[-1.601208,47.178099],[-1.598246,47.176494],[-1.597001,47.175939],[-1.594001,47.173988],[-1.591897,47.172616],[-1.58945,47.171624],[-1.585501,47.170457],[-1.582711,47.170019],[-1.580651,47.169639],[-1.577345,47.168326],[-1.573138,47.166808],[-1.564519,47.16334],[-1.557758,47.161545],[-1.551147,47.159954],[-1.545465,47.159124],[-1.539648,47.15916],[-1.536172,47.15956],[-1.533489,47.160261],[-1.530226,47.161239],[-1.527629,47.162421],[-1.525354,47.163793],[-1.52383,47.164873],[-1.521642,47.167002],[-1.51941,47.169512],[-1.517158,47.171524],[-1.515119,47.172925],[-1.512077,47.174609],[-1.508031,47.176448],[-1.50552,47.178045],[-1.503471,47.179904],[-1.502151,47.181422],[-1.499865,47.183527],[-1.496173,47.186095],[-1.494005,47.187743],[-1.492202,47.189377],[-1.49053,47.191052],[-1.487718,47.193648],[-1.486216,47.195544],[-1.485314,47.197294],[-1.4845,47.199305],[-1.484007,47.201245],[-1.483899,47.202631],[-1.48387,47.203818],[-1.483795,47.205262],[-1.484388,47.207557],[-1.484946,47.209044],[-1.485246,47.210006],[-1.484946,47.211085],[-1.484408,47.211995],[-1.483303,47.212936],[-1.481597,47.213781],[-1.480363,47.21451],[-1.47945,47.215465],[-1.474802,47.220544],[-1.471433,47.224303],[-1.470081,47.225528],[-1.469115,47.226636],[-1.468882,47.227079],[-1.468796,47.228566],[-1.469097,47.229477],[-1.469912,47.230308],[-1.47105,47.231094],[-1.472786,47.232202],[-1.478449,47.23548],[-1.483621,47.238248],[-1.490037,47.241555],[-1.497267,47.245269],[-1.499779,47.246289],[-1.504306,47.248124],[-1.50862,47.250223],[-1.514198,47.252784],[-1.515422,47.253119],[-1.518169,47.253221],[-1.520766,47.25379],[-1.522655,47.254402],[-1.523599,47.254606],[-1.529115,47.255014],[-1.534264,47.255289],[-1.536216,47.255363],[-1.539371,47.256193],[-1.540594,47.256514],[-1.545466,47.257096],[-1.554536,47.257558]],[[-1.574046,47.199128],[-1.574689,47.19977],[-1.571084,47.204758],[-1.570053,47.206128],[-1.566834,47.20712],[-1.565506,47.207878],[-1.562952,47.20852],[-1.561257,47.208461],[-1.557973,47.207893],[-1.554989,47.207528],[-1.550954,47.207032],[-1.54898,47.207091],[-1.541554,47.209409],[-1.538166,47.2104],[-1.532994,47.21107],[-1.528587,47.21158],[-1.522909,47.212571],[-1.521643,47.213184],[-1.519454,47.213738],[-1.517822,47.214102],[-1.516985,47.214204],[-1.516281,47.214263],[-1.516056,47.213796],[-1.517161,47.21287],[-1.519114,47.211784],[-1.52085,47.210558],[-1.52585,47.207308],[-1.526797,47.206588],[-1.529479,47.205312],[-1.535381,47.203008],[-1.539464,47.201431],[-1.543963,47.200042],[-1.544306,47.200035],[-1.546055,47.199641],[-1.547429,47.199539],[-1.547987,47.199444],[-1.549275,47.199459],[-1.549586,47.199284],[-1.55082,47.199218],[-1.551593,47.199306],[-1.553718,47.199211],[-1.55684,47.199167],[-1.563502,47.199157],[-1.574046,47.199128]],[[-1.566581,47.2469],[-1.56555,47.246551],[-1.561773,47.24556],[-1.560721,47.245385],[-1.559798,47.245647],[-1.559219,47.246259],[-1.558832,47.246886],[-1.559412,47.247862],[-1.560249,47.248678],[-1.561987,47.250877],[-1.562416,47.251227],[-1.563039,47.251577],[-1.564241,47.251635],[-1.565314,47.251606],[-1.566323,47.251358],[-1.567095,47.250965],[-1.567675,47.25044],[-1.567975,47.249872],[-1.568126,47.248852],[-1.567868,47.248022],[-1.567589,47.247599],[-1.567095,47.247118],[-1.566581,47.2469]]],[[[-1.567381,47.250419],[-1.567724,47.249931],[-1.567789,47.249516],[-1.567826,47.248908],[-1.567765,47.248311],[-1.567569,47.247837],[-1.567322,47.24752],[-1.566721,47.247156],[-1.565954,47.246854],[-1.565557,47.246727],[-1.562708,47.245954],[-1.561431,47.245637],[-1.561053,47.245587],[-1.560688,47.245605],[-1.560323,47.24567],[-1.559942,47.245833],[-1.559647,47.246006],[-1.559435,47.246209],[-1.559172,47.246599],[-1.559081,47.246894],[-1.559124,47.247105],[-1.55922,47.247353],[-1.559832,47.248048],[-1.560562,47.248766],[-1.561119,47.249458],[-1.561903,47.250434],[-1.562337,47.250947],[-1.562702,47.251231],[-1.563008,47.251369],[-1.563502,47.251486],[-1.564231,47.251555],[-1.56553,47.251435],[-1.565916,47.251344],[-1.566603,47.251096],[-1.566941,47.2509],[-1.567188,47.250659],[-1.567381,47.250419]],[[-1.563218,47.24622],[-1.562043,47.245918],[-1.56116,47.245701],[-1.56082,47.245705],[-1.560412,47.245805],[-1.560098,47.245955],[-1.559827,47.246137],[-1.55972,47.246324],[-1.559658,47.246552],[-1.559725,47.246776],[-1.560239,47.247786],[-1.560502,47.248176],[-1.56084,47.2487],[-1.56159,47.248977],[-1.562459,47.249275],[-1.563156,47.24945],[-1.563661,47.249552],[-1.5641,47.2496],[-1.56446,47.249603],[-1.56487,47.249578],[-1.565283,47.24952],[-1.5656,47.24943],[-1.565932,47.249299],[-1.566211,47.249104],[-1.566466,47.248817],[-1.56663,47.248545],[-1.56671,47.248226],[-1.566656,47.247898],[-1.566495,47.247469],[-1.566205,47.247163],[-1.565701,47.246922],[-1.563218,47.24622]]],[[[-1.563566,47.246595],[-1.565647,47.247192],[-1.566023,47.247403],[-1.566241,47.247575],[-1.566386,47.247812],[-1.566447,47.247998],[-1.566461,47.248189],[-1.566426,47.248398],[-1.566335,47.248587],[-1.566077,47.248919],[-1.565814,47.249123],[-1.565267,47.249323],[-1.564725,47.249421],[-1.564237,47.249425],[-1.563749,47.249385],[-1.563191,47.249278],[-1.562571,47.249106],[-1.561477,47.248689],[-1.56113,47.248504],[-1.560867,47.248274],[-1.560744,47.248106],[-1.560121,47.246839],[-1.560114,47.24657],[-1.560264,47.246311],[-1.560484,47.246149],[-1.56064,47.246062],[-1.56097,47.245974],[-1.561064,47.245956],[-1.561343,47.24596],[-1.561729,47.246022],[-1.563566,47.246595]],[[-1.565712,47.247283],[-1.56443,47.247655],[-1.564999,47.248475],[-1.565321,47.248464],[-1.565594,47.248336],[-1.565825,47.248165],[-1.565922,47.248048],[-1.565997,47.247844],[-1.566002,47.247633],[-1.565841,47.247367],[-1.565712,47.247283]],[[-1.563791,47.247815],[-1.563062,47.248048],[-1.563615,47.24889],[-1.564342,47.248666],[-1.563791,47.247815]],[[-1.563051,47.248598],[-1.562316,47.248802],[-1.561768,47.247975],[-1.562498,47.247757],[-1.563051,47.248598]],[[-1.563647,47.247746],[-1.563099,47.246901],[-1.562396,47.247134],[-1.562928,47.247943],[-1.563647,47.247746]],[[-1.562418,47.247641],[-1.561699,47.247859],[-1.561162,47.247043],[-1.561876,47.246817],[-1.562418,47.247641]],[[-1.561742,47.24673],[-1.561355,47.246184],[-1.560207,47.246541],[-1.560551,47.247069],[-1.561742,47.24673]]]]}
+-->
+<script type="text/javascript">
+//launch map
+var map = L.map("mapid").setView([47.5, -1], 15)
+// Google hybrid
+var googleHybrid = L.tileLayer(
+  "http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}",
+  {
+    maxZoom: 20,
+    subdomains: ["mt0", "mt1", "mt2", "mt3"],
+    attribution:
+      '&copy; <a href="https://www.google.com/intl/fr/policies/privacy/">Google</a>',
+  },
+)
+//OSM
+var OSM = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 19,
+})
+var control = L.control.layers({
+  "Open Street Map": OSM,
+  "Google Hybrid": googleHybrid,
+})
+OSM.addTo(map)
+control.addTo(map)
+//launch leaflet.draw
+drawformultipolygon(map)
+/**
+ * @name drawformultipolygon
+ * Function based on leaflet.draw to create and edit a single valid Multipolygon with holes
+ * Uses the Polygon.Minitools leaflet extension
+ * @author Edouard Morin
+ * @license MIT License, Copyright (c) 2024 Edouard Morin - DREAL PdL
+ * @see {@link http://mon repos} documentation for further information.
+ */
+function drawformultipolygon(map) {
+  var drawnItems = new L.FeatureGroup() //group of polygon layers having 1 outer ring and their inner rings
+  map.addLayer(drawnItems)
+  var polygon1 = {} //The Multipolygon to create or edit
+  var deleteoption = 0 //0: remove polygon in group of polygon / 1: remove the inner and outer rings separately
+  drawfromtextarea(document.getElementById("geometry_form")) //Initializing polygon1 in edit
+  var drawControl = new L.Control.Draw({ //Setting up the leaflet.draw control bar
+    position: "topleft",
+    draw: {
+      polygon: {
+        allowIntersection: false,
+        drawError: {
+          color: "#e1e100",
+          message: "<strong>Error<strong> : Invalid geometry!",
+        },
+      },
+      marker: false,
+      polyline: false,
+      rectangle: false,
+      circle: false,
+      circlemarker: false,
+    },
+    edit: {
+      poly: {
+        allowIntersection: false,
+      },
+      featureGroup: drawnItems,
+      remove: true,
+    },
+  })
+  L.drawLocal.draw.toolbar.buttons.polygon = 'Draw in the multipolygon'
+  L.drawLocal.edit.toolbar.buttons.edit = 'Edit the multipolygon'
+  L.drawLocal.edit.toolbar.buttons.remove = 'Remove part of the multipolygon'
+  map.addControl(drawControl)
+  /*
+  * Definition of events
+  */
+  //adding a simple polygon in drawnItems elements
+  map.on("draw:created", function (e) {
+    var tempgroup = [e.layer]
+    gestpoly(tempgroup, drawnItems)
+  })
+  //at the start of the edition, we divide the treatment, the outer rings of one color and the inner rings of another
+  map.on("draw:editstart", function (e) {
+  //The leaflet.draw editing module does not allow editing the inner rings of polygons with holes, so we display everything as simple polygons.
+    drawnItems = disecedit(drawnItems)
+    map.on("draw:toolbarclosed", toolbarcancel)
+  })
+  //For editing, polygons in drawnItems are treated as polygons added 1 to 1.
+	//they were previously classified into groups of successive outer and inner rings and classified to integrate the case of Matryoshka dolls
+  map.on("draw:edited", function (e) {
+    map.off("draw:toolbarclosed", toolbarcancel)
+    polygon1 = {}
+    var tempgroup = retablayers(drawnItems)
+    var refgroup = new L.FeatureGroup();
+    gestpoly(tempgroup, refgroup, "edit", gestpoly)
+  })
+  //at the start of the delete event, we offer 2 choices, either we delete each polygon with its holes, or we divide the processing, the outer rings of one color and the inner rings of another to delete each of them separately
+  map.on("draw:deletestart", function (e) {
+  //leaflet.draw's removal module does not allow removing inner rings from polygons with holes, so we display everything as simple polygons.
+	if(confirm('Would you also like to act on the inner rings?')){
+	  deleteoption = 1
+      drawnItems = disecedit(drawnItems)
+      map.on("draw:toolbarclosed", toolbarcancel)
+	} else {
+	  deleteoption = 0
+	}
+  })
+  //Case deleteoption = 1 : For removal, the remaining polygons in drawItems are treated as polygons added 1 to 1.
+	//they have previously been classified into groups of successive outer and inner rings
+  map.on("draw:deleted", function (e) {
+    if (drawnItems.getLayers().length > 0) {
+	  if(deleteoption == 1){
+	    if (testpolyininner(e.layers, drawnItems)) {
+		  alert("Error: You cannot delete an interior ring if it contains other polygons. Delete the contained polygons first!")
+		} else {
+	      polygon1 = {}
+	      var tempgroup = retablayers(drawnItems)
+	      var refgroup = new L.FeatureGroup()
+	      gestpoly(tempgroup, refgroup, "edit", gestpoly)
+		  map.off("draw:toolbarclosed", toolbarcancel)
+		}
+	  } else {
+	    makeMultipoly(drawnItems)
+	  }
+    } else {
+	  if(deleteoption == 1){
+        map.off("draw:toolbarclosed", toolbarcancel)
+	  }
+      polygon1 = {}
+      document.getElementById("geometry_form").value =
+        '{"type":"MultiPolygon","coordinates":[]}'
+    }
+	deleteoption = 0
+  })
+  //change geometry text in textarea
+  document
+    .getElementById("geometry_form")
+    .addEventListener("change", function () {
+	  drawfromtextarea(this)
+    })
+  /*
+  * functions
+  */
+  //handle the addition of a simple polygon without holes in a reference group
+  function gestpoly(
+    tab,//Array of simple polygon to add to reference featuregroup
+    refgroup,//reference featuregroup: group of polygon layers having 1 outer ring and their inner rings
+    typedit = "add",//"add" to create the Multipolygon, "edit" to edit the Multipolygon geometry value in the textarea
+    callback = function () {
+      return null
+    },//callback to call itself
+  ) {
+    //we clean the 1st polygon of tab (simple without hole) : polygon0
+    var polygon0 = tab[0]
+    var llpolyref = polygon0.getLatLngs()[0]
+    polygon0 = L.polygon(llpolyref)
+    var test = true
+    if (refgroup.getLayers().length == 0) {//initialization
+      polygon1 = polygon0
+      refgroup.addLayer(polygon1)
+      tab.shift()
+    } else {//general case
+      if (polygon1.containsPolysimple(polygon0)) {//if innerring
+        cookieCut(polygon0, refgroup)
+        tab.shift()
+      } else {
+        if (polygon1.intersectPolysimple(polygon0)) {//if invalid geometry
+          alert("Error: Polygons must not overlap!")
+          test = false
+        } else {//if outerring
+          refgroup.addLayer(polygon0)
+          makeMultipoly(refgroup)
+          tab.shift()
+        }
+      }
+    }
+    if (test && tab.length == 0) {//treatment ends
+      makeMultipoly(refgroup)
+      drawnItems = redrawbase(polygon1, drawnItems)
+      document.getElementById("geometry_form").value = JSON.stringify(
+        polygon1.toGeoJSON().geometry,
+      )
+    } else if (test) {//restarting treatment
+      callback(tab, refgroup, typedit, callback)
+    } else if (test === false && typedit == "edit") {//error during editing processing
+      var geom = JSON.parse(document.getElementById("geometry_form").value)
+      var coord = geom.coordinates
+      var polybase = new L.Polygon([])
+      polybase.buildfromgeojsoncoord(coord)
+      drawnItems = redrawbase(polybase, drawnItems)
+      makeMultipoly(drawnItems)
+    }
+  }
+  //created hole in polygon
+  function cookieCut(poly2, group) {
+    let coord = poly2.getLatLngs()[0]
+    //recherche du poly concerné
+    let layerp
+    group.eachLayer((l) => {
+      var test = true
+      coord.forEach((m) => {
+        if (l.containsPoint(m) === false) {
+          test = false
+        }
+      })
+      if (test) {
+        layerp = l
+      }
+    })
+    group.removeLayer(layerp)
+    let geomp = layerp.getLatLngs()
+    geomp.push(coord)
+    layerp = L.polygon(geomp)
+    group.addLayer(layerp)
+    makeMultipoly(group)
+  }
+  //Transform a reference group into a single multipolygon : polygon1
+  function makeMultipoly(group) {
+    let polygons = []
+    group.eachLayer((l) => {
+      //union des polygones pour recréer polygon1
+      polygons.push(l.getLatLngs())
+    })
+    polygon1 = L.polygon(polygons)
+  }
+  //created new drawnitems from multipolygon
+  function redrawbase(poly2, group) {
+    group.clearLayers()
+    var polytemp = poly2.getLatLngs()
+    polytemp.forEach((e) => {
+      group.addLayer(L.polygon(e))
+    })
+    return group
+  }
+  //rebuild drawnItems with the outer and inner rings of the multipolygon separated to modify or to delete them
+  function disecedit(group) {
+    var tempgroup1 = new L.FeatureGroup()
+    var tempgroup2 = new L.FeatureGroup()
+    var i = 0
+    var j = 0
+    group.eachLayer((l) => {
+      i = 0
+      var latlngl = l.getLatLngs()
+      latlngl.forEach((e) => {
+        var thatp = L.polygon(e)
+        thatp["idint"] = j //identify outerring/innerring groups
+        if (i == 0) { //outerring
+          tempgroup1.addLayer(thatp)
+        } else { //innerring
+          tempgroup2.addLayer(thatp)
+        }
+        i++
+      })
+      j++
+    })
+    group.clearLayers()
+    tempgroup1.eachLayer((l) => {
+      group.addLayer(l)
+    })
+    tempgroup2.eachLayer((l) => {
+      l.options.color = "#00FF00"
+      group.addLayer(l)
+    })
+    return group
+  }
+  //classification of polygons as an array ordered by outer rings and inner rings, to be used after the disecedit function
+  function retablayers(group) {
+    var arraygroup = []
+	var arrayouter = []
+	group.eachLayer((l) => {//list outer rings 
+      if (l.options.color != "#00FF00") {
+        arrayouter.push(l)
+      }
+    })
+	var arrayrecombine = arrayouter
+	var j = 0
+	arrayouter.forEach((l) => {//reordering outer rings 
+	  if(j < arrayouter.length - 1){
+	    var iplace = arrayrecombine.findIndex(function (e) {return e == l;})
+	    for (let i = j + 1; i < arrayouter.length; i++) {
+          if (arrayrecombine[i].simplecontainsPolysimple(l)) {
+            arrayrecombine[iplace] = arrayrecombine[i]
+	 	    arrayrecombine[i] = l
+	 	    iplace = i
+          }
+	    }
+	  }
+	  j++
+    })
+    arrayrecombine.forEach((o) => {//embed the inner rings after each corresponding outer ring
+	  group.eachLayer((l) => { 
+        if (l.options.color != "#00FF00" && o.idint == l.idint) {
+          arraygroup.push(l)
+          group.eachLayer((s) => {
+            if (s.options.color == "#00FF00" && s.idint == l.idint) {
+              arraygroup.push(s)
+            }
+		  })
+		}
+      })
+    })
+    return arraygroup
+  }
+  //tests for the presence of a polygon in an interior ring: limitation of the delete functionality
+  function testpolyininner(group, refgroup) {
+    var test = false;
+	group.eachLayer(function(d) {
+	  if (d.options.color == "#00FF00") {
+        refgroup.eachLayer((l) => {
+	      if (d.containsPolysimple(l)) {
+	        test = true
+	      }
+        })
+	  }
+	})
+	return test
+  }
+  //if cancel edited in toolbar
+  function toolbarcancel() {
+    var geom = JSON.parse(document.getElementById("geometry_form").value)
+    var coord = geom.coordinates
+    var polybase = new L.Polygon([])
+    polybase.buildfromgeojsoncoord(coord)
+    drawnItems = redrawbase(polybase, drawnItems)
+    map.off("draw:toolbarclosed", toolbarcancel)
+  }
+  // initialize or change the textarea
+  function drawfromtextarea(e) {
+    if (typeof e.value === "string" && e.value.length === 0) {
+	  polygon1 = {}
+      drawnItems.clearLayers()
+      document.getElementById("geometry_form").value =
+        '{"type":"MultiPolygon","coordinates":[]}'
+    } else {
+      var geom = JSON.parse(e.value)
+      var coord = geom.coordinates
+      polygon1 = new L.Polygon([])
+      polygon1.buildfromgeojsoncoord(coord)
+      drawnItems = redrawbase(polygon1, drawnItems)
+      map.fitBounds(polygon1.getBounds())
+	}
+  }
+}
+</script>
+</body>
+</html>
